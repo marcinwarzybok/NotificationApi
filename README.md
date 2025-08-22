@@ -10,6 +10,10 @@ The project is a sample implementation of email notification through an API
 
 composer init-project
 
+### Run application
+
+symfony server:start
+
 ### Code quality check
 
 composer check-code-quality (rector, php-cs-fixer, phpstan, phpunit)

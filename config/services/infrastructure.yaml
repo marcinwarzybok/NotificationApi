@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\Infrastructure\:
+        resource: '../../src/Infrastructure/*'
+
+    messenger.middleware.doctrine_transaction:
+        class: App\Infrastructure\Message\DoctrineTransactionMiddleware
+        abstract: true
+        public: true
+        arguments:
+            - '@doctrine'

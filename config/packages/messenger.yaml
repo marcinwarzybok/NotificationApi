@@ -1,0 +1,30 @@
+framework:
+    messenger:
+        failure_transport: failed
+
+        transports:
+            sync: 'sync://'
+            async:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    use_notify: true
+                    check_delayed_interval: 60000
+                retry_strategy:
+                    max_retries: 3
+                    multiplier: 2
+            failed: 'doctrine://default?queue_name=failed'
+
+        default_bus: message.bus
+
+        buses:
+            message.bus:
+                middleware:
+                    - doctrine_transaction
+
+            event.bus:
+                default_middleware:
+                    enabled: true
+                    allow_no_handlers: true
+
+        routing:
+            'App\Shared\Event\EventInterface' : async

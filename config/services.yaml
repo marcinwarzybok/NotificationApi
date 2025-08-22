@@ -1,0 +1,16 @@
+imports:
+    - { resource: ./services/*.yaml }
+
+services:
+    app.message.bus:
+        class: App\Infrastructure\Message\SymfonyMessenger
+        arguments:
+            - '@message.bus'
+
+    app.event.bus:
+        class: App\Infrastructure\Message\SymfonyMessenger
+        arguments:
+            - '@event.bus'
+
+    App\Shared\Message\MessageBusInterface $messageBus: '@app.message.bus'
+    App\Shared\Message\EventBusInterface $eventBus: '@app.event.bus'

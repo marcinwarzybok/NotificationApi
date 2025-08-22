@@ -1,0 +1,19 @@
+create_email_notification:
+    path: /api/email-notifications
+    methods: [POST]
+    defaults:
+        _controller: App\EmailNotification\Features\Create\Entrypoint\Http\CreateEmailNotificationAction
+
+get_email_notifications:
+    path: /api/email-notifications
+    methods: [GET]
+    defaults:
+        _controller: App\EmailNotification\Features\GetNotifications\Entrypoint\Http\GetEmailNotificationsAction
+
+send_email_notification:
+    path: /api/email-notifications/{uuid}/send
+    methods: [POST]
+    defaults:
+        _controller: App\EmailNotification\Features\Send\Entrypoint\Http\SendNotificationAction
+    requirements:
+        uuid: '[0-9a-fA-F-]+'

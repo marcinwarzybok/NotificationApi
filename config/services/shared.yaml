@@ -1,0 +1,20 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\Shared\:
+        resource: '../../src/Shared/*'
+
+    App\Shared\Logger\LoggerInterface:
+        class: App\Infrastructure\Logger\MonologLogger
+
+    App\Shared\Mailer\EmailSenderInterface:
+        class: App\Shared\Mailer\NullEmailSender
+
+    App\Shared\Message\MessageBusInterface:
+        class: App\Infrastructure\Message\SymfonyMessenger
+
+    App\Shared\Uuid\UuidProviderInterface:
+        class: App\Infrastructure\Uuid\SymfonyUuid
